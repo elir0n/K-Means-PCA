@@ -122,24 +122,6 @@ PCA finds directions of maximum variance in the data:
 
 ---
 
-## Suggested Improvements
-
-These are high-value additions that would deepen the project without over-engineering it:
-
-1. **KMeans++ initialization** — seed centroids with distance-proportional probability instead of uniform random sampling. Converges faster, avoids poor initializations, and consistently yields lower final WCSS. One extra private method `_init_centroids_plusplus()`.
-
-2. **Elbow method** — run K-Means for K = 1, 2, ..., 15 and plot final WCSS vs K. The "elbow" in the curve reveals the natural number of clusters without needing ground-truth labels.
-
-3. **Silhouette score** — a per-point metric measuring how well each point fits its assigned cluster compared to the nearest neighboring cluster (+1 = perfect, 0 = boundary, −1 = misclassified). Pairs with the elbow method to confirm results quantitatively.
-
-4. **Explained variance ratio for PCA** — plot `eigenvalues / eigenvalues.sum()` (cumulative) to show what fraction of total data variance is captured by k components. Answers "how many dimensions are enough?" without manual trial-and-error.
-
-5. **DBSCAN comparison on moons** — run `sklearn.cluster.DBSCAN` alongside K-Means on the two-moons dataset and display both results side by side. The contrast perfectly illustrates K-Means' geometric limitation with no extra math required.
-
-6. **Multiple random restarts (`n_init`)** — run K-Means N times with different random seeds and keep the result with the lowest final WCSS. This is what scikit-learn does by default (`n_init=10`) and dramatically stabilizes results on real data.
-
----
-
 ## License
 
 MIT
